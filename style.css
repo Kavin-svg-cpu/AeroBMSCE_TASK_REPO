@@ -416,6 +416,94 @@ a.card:hover { background: var(--panel-hover); transform: translateY(-3px); colo
 .contact-card { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--s5); align-items: center; }
 .contact-card img { max-width: min(360px, 100%); margin-inline: auto; }
 
+/* ---------- 14b. Ask the club: Ground Control assistant ---------- */
+.split-top { align-items: start; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.gc-legend { list-style: none; padding: 0; margin: var(--s4) 0; display: grid; gap: var(--s2); font-size: 0.9rem; color: var(--ink-dim); }
+.gc-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-dim); }
+
+/* the console itself: darker than the page, like a radio panel */
+.gc {
+  background: #06142a;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  display: flex; flex-direction: column;
+}
+.gc-head {
+  display: flex; justify-content: space-between; align-items: center; gap: var(--s3);
+  padding: 12px var(--s3);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em;
+}
+.gc-title { display: flex; align-items: center; gap: var(--s2); text-transform: uppercase; color: var(--ink); }
+.gc-head a { color: var(--ink-dim); text-decoration: none; }
+.gc-head a:hover { color: var(--gold); }
+.gc-dot { width: 8px; height: 8px; border-radius: 50%; background: #57e3a3; box-shadow: 0 0 8px #57e3a3; }
+
+.gc-log {
+  position: relative;            /* so messages' offsetTop is measured from the log */
+  height: 360px; overflow-y: auto;
+  padding: var(--s3);
+  display: flex; flex-direction: column; gap: 12px;
+}
+.gc-msg { max-width: 88%; padding: 12px 14px; border-radius: var(--radius); font-size: 0.95rem; line-height: 1.5; }
+.gc-msg p { margin: 0; }
+.gc-msg p + p { margin-top: var(--s2); }
+.gc-msg-bot { align-self: flex-start; background: var(--panel); border: 1px solid var(--line); }
+.gc-msg-user { align-self: flex-end; background: var(--gold); color: var(--paper-deep); font-weight: 500; }
+.gc-msg a { color: var(--gold); }
+
+.gc-source { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-dim); border-top: 1px dashed var(--line); padding-top: var(--s2); }
+.gc-source span { text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink); margin-right: var(--s1); }
+.gc-source a { color: var(--ink-dim); }
+.gc-source a:hover { color: var(--gold); }
+
+/* status tags: is this answer published, or does it need confirming? */
+.gc-tag {
+  display: inline-block; margin-bottom: var(--s2);
+  font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 2px 8px; border: 1px solid;
+}
+.gc-tag-ok   { color: #57e3a3; border-color: rgba(87, 227, 163, 0.5); }
+.gc-tag-warn { color: var(--gold); border-color: rgba(245, 183, 48, 0.6); }
+.gc-legend .gc-tag { margin: 0 var(--s2) 0 0; }
+
+/* three blinking dots while "transmitting" */
+.gc-typing { display: flex; gap: 5px; padding: 14px; }
+.gc-typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-dim); animation: gc-blink 1s infinite; }
+.gc-typing span:nth-child(2) { animation-delay: .15s; }
+.gc-typing span:nth-child(3) { animation-delay: .3s; }
+@keyframes gc-blink { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+
+.gc-chips { display: flex; flex-wrap: wrap; gap: var(--s2); padding: 0 var(--s3) var(--s3); }
+.gc-chip {
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 8px 12px; font-family: var(--font-body); font-size: 0.85rem; cursor: pointer;
+}
+.gc-chip:hover { border-color: var(--gold); color: var(--gold); }
+
+.gc-form { display: none; border-top: 1px solid var(--line); }
+.gc.is-ready .gc-form { display: flex; }      /* only usable once the script has loaded */
+.gc-input {
+  flex: 1; min-width: 0;
+  background: transparent; border: 0; color: var(--ink);
+  padding: 14px var(--s3); font-family: var(--font-body); font-size: 0.95rem;
+}
+.gc-input::placeholder { color: var(--ink-dim); opacity: 0.7; }
+.gc-input:focus-visible { outline-offset: -3px; }
+.gc-send {
+  width: 56px; border: 0; cursor: pointer;
+  background: var(--gold); color: var(--paper-deep); font-size: 1.2rem; font-weight: 700;
+}
+.gc-send:hover { background: #ffd36e; }
+.gc-noscript { padding: var(--s3); margin: 0; font-size: 0.9rem; color: var(--ink-dim); }
+
 /* ---------- 15. Footer: drawing-sheet title block ---------- */
 .site-footer { border-top: 1px solid var(--line); background: var(--paper-deep); }
 .title-block {

@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
+  <script src="ask-the-club.js" defer></script>
 </head>
 <body>
 
@@ -145,6 +146,47 @@
       </div>
     </section>
 
+    <!-- ===== Ask the club: Ground Control assistant (logic in ask-the-club.js) ===== -->
+    <section class="section band" id="ask" aria-labelledby="ask-title">
+      <div class="container split split-top">
+        <div>
+          <span class="label">Ask the club</span>
+          <h2 id="ask-title">Thinking of joining? Ask away.</h2>
+          <p class="lead">Answers come from the club’s published information and BMSCE’s own pages, with the source shown. If something isn’t on record, Ground Control says so and passes your question to the core team.</p>
+          <ul class="gc-legend">
+            <li><span class="gc-tag gc-tag-ok">On record</span> published by the club or BMSCE</li>
+            <li><span class="gc-tag gc-tag-warn">Not published</span> confirm with the core team</li>
+          </ul>
+          <p class="gc-meta">Core team: <a href="mailto:aerobmsce@bmsce.ac.in">aerobmsce@bmsce.ac.in</a></p>
+        </div>
+
+        <div class="gc">
+          <div class="gc-head">
+            <span class="gc-title"><span class="gc-dot" aria-hidden="true"></span>AeroBMSCE · Ground Control</span>
+            <a href="mailto:aerobmsce@bmsce.ac.in">Message the core team</a>
+          </div>
+
+          <div class="gc-log" role="log" aria-live="polite" aria-label="Conversation">
+            <div class="gc-msg gc-msg-bot"><p>Hi! Ask me about joining, recruitment, projects or what you’ll learn.</p></div>
+          </div>
+
+          <div class="gc-chips" aria-label="Suggested questions">
+            <button type="button" class="gc-chip">Who can join?</button>
+            <button type="button" class="gc-chip">Do I need to be in Mechanical?</button>
+            <button type="button" class="gc-chip">How does selection work?</button>
+            <button type="button" class="gc-chip">What will I actually build?</button>
+          </div>
+
+          <form class="gc-form" autocomplete="off">
+            <label class="visually-hidden" for="gc-input">Ask a question</label>
+            <input class="gc-input" id="gc-input" type="text" placeholder="Can first-years join?" maxlength="200">
+            <button class="gc-send" type="submit" aria-label="Send question">→</button>
+          </form>
+          <noscript><p class="gc-noscript">The assistant needs JavaScript. Email <a href="mailto:aerobmsce@bmsce.ac.in">aerobmsce@bmsce.ac.in</a> instead.</p></noscript>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- ===== Footer: drawing title block ===== -->
@@ -162,6 +204,7 @@
         <li><a href="what-we-build.html">What we build</a></li>
         <li><a href="achievements.html">Achievements</a></li>
         <li><a href="partner-with-us.html">Partner with us</a></li>
+        <li><a href="index.html#ask">Ask the club</a></li>
       </ul>
       <p class="footer-note">© <span id="year">2026</span> AeroBMSCE · Propel Lab–3, BMS College of Engineering. Practice site for the AeroBMSCE web development recruitment task — not the official AeroBMSCE website.</p>
     </div>

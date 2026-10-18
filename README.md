@@ -97,6 +97,25 @@ I re-ran the same click sequence afterwards. It now goes `2026 → 2024 → (non
 
 ---
 
+## Extra: "Ask the club" assistant (Ground Control)
+
+The home page has an assistant section (`index.html#ask`, logic in `ask-the-club.js`) for students who are thinking of joining. It answers questions such as *Who can join? Do I need to be in Mechanical? How does selection work? What will I actually build? Can first-years join?*
+
+**How it works.** GitHub Pages has no backend, and an API key in front-end code would be public. So instead of calling an LLM, the assistant runs entirely in the browser:
+1. The question is normalised: lowercased, stopwords removed, and synonyms mapped to one word ("freshers" → "fresher", "quadcopter" → "drone", "applications" → "apply").
+2. Each entry in a small knowledge base of club facts is scored by keyword overlap. The score is divided by the square root of the question's length, so long questions don't win just by containing more words.
+3. Above the confidence threshold, the best answer is shown with its **sources** and a **status tag**:
+   - **On record:** published by the club or BMSCE.
+   - **Not published:** I checked and the club hasn't stated this (for example the selection process). The assistant says so and offers a pre-filled email to the core team instead of guessing.
+4. Below the threshold, it says the question isn't in the club's records and offers the same email hand-off.
+5. Suggested follow-up questions appear after every answer.
+
+**Where the facts come from.** This site's own content, plus BMSCE's public pages: the [Mechanical Engineering Student Affinity Groups](https://bmsce.ac.in/home/Mechanical-Engineering-Student-Affinity-Groups) page (Team Yaksha & Blue Impulse, faculty mentor) and the [Propel Lab-3 report](https://bmsce.ac.in/assets/files/Research/Propel%20Lab%20III%20-%20Report.pdf) (simulator and foam-trainer flight training, workshops, past builds). Eligibility, the selection process, the recruitment month and an Instagram handle aren't published anywhere I could find, so the assistant marks those answers "Not published".
+
+**Safety and UX details.** User text is always inserted with `textContent` and is never rendered as HTML. The log is an `aria-live` region so screen readers announce answers. Without JavaScript, the panel shows the core team's email instead. The typing pause is skipped when the user prefers reduced motion.
+
+---
+
 ### Running locally
 Open `index.html` in a browser. No install is needed.
 
