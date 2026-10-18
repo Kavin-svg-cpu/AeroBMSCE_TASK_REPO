@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Our Achievements — AeroBMSCE</title>
+  <meta name="description" content="AeroBMSCE's competition results from 2018 to 2026, including SAE Aero Design West, SAE Aerothon and drone racing.">
+  <link rel="icon" href="images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="notice">Practice website for the AeroBMSCE web development recruitment task. This is not the official AeroBMSCE website.</div>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="AeroBMSCE home">
+        <img src="images/logo-light.png" alt="" width="64" height="29">
+        <span class="brand-name">Aero<span>BMSCE</span></span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="who-we-are.html">Who we are</a></li>
+          <li><a href="what-we-build.html">What we build</a></li>
+          <li><a href="achievements.html" aria-current="page">Achievements</a></li>
+          <li class="nav-cta"><a href="partner-with-us.html">Partner with us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero">
+      <div class="container">
+        <span class="label">Sheet 04 — Our achievements</span>
+        <h1>20+ podiums, logged season by season.</h1>
+        <p class="lead">From SAEINDIA in Chennai to SAE Aero Design West in Fort Worth, Texas: our record across national and international competitions.</p>
+      </div>
+    </section>
+
+    <!-- ===== Credibility summary ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="stats">
+          <div class="stat"><div class="stat-value">2012</div><div class="stat-label">Flying since</div></div>
+          <div class="stat"><div class="stat-value">75+</div><div class="stat-label">Projects</div></div>
+          <div class="stat"><div class="stat-value">20+</div><div class="stat-label">Podium finishes</div></div>
+          <div class="stat"><div class="stat-value">50+</div><div class="stat-label">Papers &amp; reports</div></div>
+          <div class="stat"><div class="stat-value">USA</div><div class="stat-label">International flight history</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Flight log: filters + timeline ===== -->
+    <section class="section" aria-labelledby="log-title">
+      <div class="container">
+        <div class="dim-heading">
+          <span class="label">Flight log</span>
+          <h2 id="log-title">Milestones</h2>
+          <div class="dim-line"></div>
+        </div>
+
+        <!-- Each chip sets one filter; script.js combines the two groups -->
+        <div class="filters">
+          <div class="filter-group" data-filter="year" role="group" aria-label="Filter by season">
+            <span class="label">Season</span>
+            <button class="chip" data-value="all" aria-pressed="true">All</button>
+            <button class="chip" data-value="2026" aria-pressed="false">2026</button>
+            <button class="chip" data-value="2025" aria-pressed="false">2025</button>
+            <button class="chip" data-value="2024" aria-pressed="false">2024</button>
+            <button class="chip" data-value="2022" aria-pressed="false">2022</button>
+            <button class="chip" data-value="2020" aria-pressed="false">2020</button>
+            <button class="chip" data-value="2018" aria-pressed="false">2018</button>
+          </div>
+          <div class="filter-group" data-filter="type" role="group" aria-label="Filter by competition type">
+            <span class="label">Type</span>
+            <button class="chip" data-value="all" aria-pressed="true">All</button>
+            <button class="chip" data-value="international" aria-pressed="false">International</button>
+            <button class="chip" data-value="sae-national" aria-pressed="false">SAE national</button>
+            <button class="chip" data-value="racing" aria-pressed="false">Drone racing</button>
+            <button class="chip" data-value="other" aria-pressed="false">Other</button>
+          </div>
+          <p class="filter-status" id="filter-status" aria-live="polite"></p>
+        </div>
+
+        <div class="timeline-layout">
+
+          <!-- Flight-deck element: altitude tape. Click a year to jump to it. -->
+          <nav class="alt-tape" aria-label="Jump to season">
+            <div class="alt-tape-title">SEASON</div>
+            <ol>
+              <li><a href="#season-2026">2026</a></li>
+              <li><a href="#season-2025">2025</a></li>
+              <li><a href="#season-2024">2024</a></li>
+              <li><a href="#season-2022">2022</a></li>
+              <li><a href="#season-2020">2020</a></li>
+              <li><a href="#season-2018">2018</a></li>
+            </ol>
+            <div class="alt-tape-foot">EST · 2012</div>
+          </nav>
+
+          <div>
+            <section class="season" id="season-2026" data-year="2026">
+              <div class="season-head"><h3>2026</h3><span>Season</span></div>
+              <div class="milestones">
+                <article class="card milestone" data-type="international">
+                  <div class="event">SAE International Aero Design West</div>
+                  <p class="result">2nd place internationally, MATLAB Simulation Awards</p>
+                  <p class="meta">#16 overall globally, Micro Class · Fort Worth, Texas, USA</p>
+                </article>
+                <article class="card milestone" data-type="sae-national">
+                  <div class="event">SAE Aerothon · ADDC 2026</div>
+                  <p class="result">1st place, Unique Technology Development</p>
+                  <p class="meta">Autonomous Drone Design Challenge</p>
+                </article>
+              </div>
+            </section>
+
+            <section class="season" id="season-2025" data-year="2025">
+              <div class="season-head"><h3>2025</h3><span>Season</span></div>
+              <div class="milestones">
+                <article class="card milestone" data-type="sae-national">
+                  <div class="event">SAE Aerothon</div>
+                  <p class="result">2nd place overall</p>
+                  <p class="meta">₹1,25,000 cash prize · Nov 2025</p>
+                </article>
+                <article class="card milestone" data-type="sae-national">
+                  <div class="event">SAE Drone Design Challenge</div>
+                  <p class="result">1st place, Best Technical Presentation</p>
+                  <p class="meta">₹10,000 cash prize · May 2025</p>
+                </article>
+                <article class="card milestone" data-type="sae-national">
+                  <div class="event">SAE Autonomous Drone Design Challenge</div>
+                  <p class="result">1st place, Best Innovation</p>
+                  <p class="meta">₹5,000 cash prize · Apr 2025</p>
+                </article>
+              </div>
+            </section>
+
+            <section class="season" id="season-2024" data-year="2024">
+              <div class="season-head"><h3>2024</h3><span>Season</span></div>
+              <div class="milestones">
+                <article class="card milestone" data-type="racing">
+                  <div class="event">NITK Drone Racing Competition</div>
+                  <p class="result">2nd place</p>
+                  <p class="meta">18–20 Oct 2024</p>
+                </article>
+                <article class="card milestone" data-type="racing">
+                  <div class="event">Global Academy of Technology — Drone Racing</div>
+                  <p class="result">1st place</p>
+                  <p class="meta">Nov 2024</p>
+                </article>
+                <article class="card milestone" data-type="international">
+                  <div class="event">SAE International Aero Design West</div>
+                  <p class="result">12th place globally</p>
+                  <p class="meta">Aug 2024</p>
+                </article>
+              </div>
+            </section>
+
+            <section class="season" id="season-2022" data-year="2022">
+              <div class="season-head"><h3>2022</h3><span>Season</span></div>
+              <div class="milestones">
+                <article class="card milestone" data-type="sae-national">
+                  <div class="event">SAE Aerothon</div>
+                  <p class="result">3rd place</p>
+                  <p class="meta">₹50,000 cash prize</p>
+                </article>
+                <article class="card milestone" data-type="other">
+                  <div class="event">III South India Exhibition</div>
+                  <p class="result">2nd place</p>
+                  <p class="meta">₹15,000 cash prize · Kalpataru Institute of Technology, Tiptur, Karnataka</p>
+                </article>
+                <article class="card milestone" data-type="other">
+                  <div class="event">AI-VTOL · Techfest, IIT Bombay</div>
+                  <p class="result">4th place nationally</p>
+                  <p class="meta">National competition</p>
+                </article>
+                <article class="card milestone" data-type="international">
+                  <div class="event">SAE International Aero Design West</div>
+                  <p class="result">9th globally (Design Report), 11th globally (Technical Presentation)</p>
+                  <p class="meta">International competition</p>
+                </article>
+              </div>
+            </section>
+
+            <section class="season" id="season-2020" data-year="2020">
+              <div class="season-head"><h3>2020</h3><span>Season</span></div>
+              <div class="milestones">
+                <article class="card milestone" data-type="sae-national">
+                  <div class="event">SAEINDIA</div>
+                  <p class="result">1st place overall</p>
+                  <p class="meta">₹1,00,000 cash prize · Team Blue Impulse won nationally</p>
+                </article>
+                <article class="card milestone" data-type="international">
+                  <div class="event">SAE Aero Design West</div>
+                  <p class="result">8th globally in design standings</p>
+                  <p class="meta">International competition</p>
+                </article>
+              </div>
+            </section>
+
+            <section class="season" id="season-2018" data-year="2018">
+              <div class="season-head"><h3>2018</h3><span>Season</span></div>
+              <div class="milestones">
+                <article class="card milestone" data-type="sae-national">
+                  <div class="event">SAEINDIA · Anna University, Chennai</div>
+                  <p class="result">3rd place overall, 2nd in Design Report</p>
+                  <p class="meta">National competition</p>
+                </article>
+              </div>
+            </section>
+
+            <p class="no-results" id="no-results" hidden>No milestones match these filters. Try another season or type.</p>
+            <p class="muted">…and many more.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Photo + CTA ===== -->
+    <section class="section band">
+      <div class="container split">
+        <figure class="figure">
+          <img src="images/photo3.jpg" alt="AeroBMSCE members standing behind an SAE International banner" width="648" height="407" loading="lazy">
+          <figcaption><b>FIG. 1</b> — The team at SAE International Aero Design</figcaption>
+        </figure>
+        <div>
+          <span class="label">Next on the flight plan</span>
+          <h2>NACDEC, ISRO IROC, SAE Aero Design West 2027…</h2>
+          <p class="muted">See the competitions we’re targeting in 2026 and 2027, and how partners help get us there.</p>
+          <a class="btn btn-primary" href="partner-with-us.html#upcoming">What’s next →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="title-block">
+        <div><small>PROJECT</small><strong>AeroBMSCE — BMS College of Engineering</strong></div>
+        <div><small>DRAWING</small><strong>Our achievements</strong></div>
+        <div><small>SHEET</small><strong>04 / 05</strong></div>
+        <div><small>CONTACT</small><a href="mailto:aerobmsce@bmsce.ac.in">aerobmsce@bmsce.ac.in</a></div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="who-we-are.html">Who we are</a></li>
+        <li><a href="what-we-build.html">What we build</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="partner-with-us.html">Partner with us</a></li>
+      </ul>
+      <p class="footer-note">© <span id="year">2026</span> AeroBMSCE · Propel Lab–3, BMS College of Engineering. Practice site for the AeroBMSCE web development recruitment task — not the official AeroBMSCE website.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
