@@ -13,9 +13,10 @@ Plain HTML, CSS and JavaScript. No frameworks, no build step and no backend, as 
 | Who we are | `who-we-are.html` |
 | What we build | `what-we-build.html` |
 | Our achievements | `achievements.html` |
+| Learning path | `learn.html` |
 | Partner with us | `partner-with-us.html` |
 
-All five pages share one stylesheet (`style.css`) and one script (`script.js`). `journey.html` and `partners.html` from the original site are kept as small redirect pages, so old links still work.
+All six pages share one stylesheet (`style.css`) and one script (`script.js`). The AI features add a few small scripts, described at the end. `journey.html` and `partners.html` from the original site are kept as small redirect pages, so old links still work.
 
 ---
 
@@ -97,22 +98,33 @@ I re-ran the same click sequence afterwards. It now goes `2026 → 2024 → (non
 
 ---
 
-## Extra: "Ask the club" assistant (Ground Control)
+## Extra: AI features (from the "Homepage — Blueprint" mockup)
 
-The home page has an assistant section (`index.html#ask`, logic in `ask-the-club.js`) for students who are thinking of joining. It answers questions such as *Who can join? Do I need to be in Mechanical? How does selection work? What will I actually build? Can first-years join?*
+Four features follow a mockup of AI-assisted pages. They share one small matching engine, `ai-core.js`.
 
-**How it works.** GitHub Pages has no backend, and an API key in front-end code would be public. So instead of calling an LLM, the assistant runs entirely in the browser:
-1. The question is normalised: lowercased, stopwords removed, and synonyms mapped to one word ("freshers" → "fresher", "quadcopter" → "drone", "applications" → "apply").
-2. Each entry in a small knowledge base of club facts is scored by keyword overlap. The score is divided by the square root of the question's length, so long questions don't win just by containing more words.
-3. Above the confidence threshold, the best answer is shown with its **sources** and a **status tag**:
-   - **On record:** published by the club or BMSCE.
-   - **Not published:** I checked and the club hasn't stated this (for example the selection process). The assistant says so and offers a pre-filled email to the core team instead of guessing.
-4. Below the threshold, it says the question isn't in the club's records and offers the same email hand-off.
-5. Suggested follow-up questions appear after every answer.
+| Feature | Where | Files |
+|---|---|---|
+| **Test-field strip.** Live wind, gusts, temperature and sunset at BMSCE, plus a plain-language "AI summary" of whether it's a good time for test flights | Top of the home page | `field.js` |
+| **Ask the club (Ground Control).** Answers joining questions with sources | Home page, `#ask` | `ask-the-club.js` |
+| **Learning path + AI tutor.** Six waypoints (Basics of flight → Competition) with notes, practice quizzes and a tutor that cites its sources | `learn.html` | `learn-data.js`, `learn.js` |
+| **Project archive search.** Every documented build and result, searchable in plain words | What we build, `#archive` | `archive.js` |
 
-**Where the facts come from.** This site's own content, plus BMSCE's public pages: the [Mechanical Engineering Student Affinity Groups](https://bmsce.ac.in/home/Mechanical-Engineering-Student-Affinity-Groups) page (Team Yaksha & Blue Impulse, faculty mentor) and the [Propel Lab-3 report](https://bmsce.ac.in/assets/files/Research/Propel%20Lab%20III%20-%20Report.pdf) (simulator and foam-trainer flight training, workshops, past builds). Eligibility, the selection process, the recruitment month and an Instagram handle aren't published anywhere I could find, so the assistant marks those answers "Not published".
+**Why there's no LLM.** GitHub Pages has no backend, and an API key in front-end code would be public. So the "AI" runs entirely in the browser:
+1. The question is normalised: lowercased, filler words removed, synonyms mapped ("freshers" → "fresher", "windy" → "wind", "LiPo" → "battery") and plurals stripped.
+2. Each knowledge item is scored by keyword overlap. Curated keywords count double and titles count once, and the score is divided by √(question length).
+3. Below a confidence threshold, the assistant **says it doesn't know** and offers a pre-filled email to the core team or a senior. The archive also requires that at least half the question's words are recognised, so one common word ("design") can't pull in unrelated entries.
+4. Every answer shows its **sources**. Ground Control also tags each answer **On record** or **Not published**.
 
-**Safety and UX details.** User text is always inserted with `textContent` and is never rendered as HTML. The log is an `aria-live` region so screen readers announce answers. Without JavaScript, the panel shows the core team's email instead. The typing pause is skipped when the user prefers reduced motion.
+**The weather summary** uses the free [Open-Meteo](https://open-meteo.com/) API (no key needed). The limits (≤15 km/h wind and ≤20 km/h gusts for a beginner trainer) are a stated rule of thumb, **not an official club rule**. Every summary ends by pointing to the Digital Sky airspace map and a senior's go-ahead.
+
+**Where the facts come from**
+- *Club facts:* this site's content, the core team's recruitment notes (written test by domain → shortlist → interview; open to 1st–3rd years; first-years welcome, same test paper), and BMSCE's public [Mechanical Student Affinity Groups](https://bmsce.ac.in/home/Mechanical-Engineering-Student-Affinity-Groups) page and [Propel Lab-3 report](https://bmsce.ac.in/assets/files/Research/Propel%20Lab%20III%20-%20Report.pdf).
+- *Learning notes:* NASA Glenn's Beginner's Guide to Aeronautics, the FAA Pilot's Handbook of Aeronautical Knowledge, Flite Test, eCalc, Airfoil Tools, ArduPilot docs, the BYU MAGICC LiPo guide, India's Drone Rules 2021 (MoCA summary and Digital Sky), SAE Aero Design and SAEINDIA AeroTHON pages. Each note links to its own sources.
+- *Archive:* only documented facts. "Lesson" says *Not recorded yet* unless a lesson was actually written down, and undated lab projects are marked "c. 2022".
+
+**Safety and UX details.** User text is always inserted with `textContent`, never as HTML. Chat logs are `aria-live` regions. Quiz progress is saved per browser in `localStorage`, wrapped in try/catch so a blocked storage doesn't break the page. Typing animations are skipped under `prefers-reduced-motion`. Without JavaScript, each feature shows a fallback message.
+
+**Testing.** An automated test page loads the real pages in iframes and runs 37 questions through the three matchers. Examples: the mockup's "Can first-years join?" goes to the recruitment notes, "Is it too windy to fly?" goes to WPT 05 › Reading the weather, and "Which year did we try a twin-boom design?" correctly returns *No record*.
 
 ---
 

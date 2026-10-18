@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
+  <script src="ai-core.js" defer></script>
+  <script src="archive.js" defer></script>
 </head>
 <body>
 
@@ -31,6 +33,7 @@
           <li><a href="who-we-are.html">Who we are</a></li>
           <li><a href="what-we-build.html" aria-current="page">What we build</a></li>
           <li><a href="achievements.html">Achievements</a></li>
+          <li><a href="learn.html">Learn</a></li>
           <li class="nav-cta"><a href="partner-with-us.html">Partner with us</a></li>
         </ul>
       </nav>
@@ -103,6 +106,33 @@
           <img src="images/photo7.jpg" alt="The Flying Phantoms quadcopter in front of the SAE Aerothon 2025 second prize cheque" width="900" height="1200" loading="lazy">
           <figcaption><b>FIG. 2</b> — The Flying Phantoms drone, SAE Aerothon 2025</figcaption>
         </figure>
+      </div>
+    </section>
+
+    <!-- ===== Project archive with plain-language search (archive.js) ===== -->
+    <section class="section" id="archive" aria-labelledby="archive-title">
+      <div class="container">
+        <div class="dim-heading">
+          <span class="label">Project archive</span>
+          <h2 id="archive-title">Every aircraft we’ve built, and what we learned.</h2>
+          <div class="dim-line"></div>
+        </div>
+        <p class="lead">Results, builds and lab projects by year. Ask in plain words and the search finds the right entry. If something isn’t in the records, it says so.</p>
+
+        <form class="archive-search" role="search">
+          <label class="visually-hidden" for="archive-input">Search the archive</label>
+          <input class="archive-input" id="archive-input" type="search" placeholder="Which year did we try a twin-boom design?" maxlength="200">
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+        <div class="archive-examples gc-chips" aria-label="Example searches">
+          <button type="button" class="gc-chip">Which year did we try a twin-boom design?</button>
+          <button type="button" class="gc-chip">payload aircraft</button>
+          <button type="button" class="gc-chip">racing drones 2024</button>
+          <button type="button" class="gc-chip">eVTOL</button>
+        </div>
+        <p class="archive-answer" role="status" aria-live="polite"></p>
+        <div class="archive-grid"></div>
+        <noscript><p class="muted">The archive needs JavaScript. The full results list is on the <a href="achievements.html">Achievements</a> page.</p></noscript>
       </div>
     </section>
 
@@ -183,7 +213,7 @@
       <div class="title-block">
         <div><small>PROJECT</small><strong>AeroBMSCE — BMS College of Engineering</strong></div>
         <div><small>DRAWING</small><strong>What we build</strong></div>
-        <div><small>SHEET</small><strong>03 / 05</strong></div>
+        <div><small>SHEET</small><strong>03 / 06</strong></div>
         <div><small>CONTACT</small><a href="mailto:aerobmsce@bmsce.ac.in">aerobmsce@bmsce.ac.in</a></div>
       </div>
       <ul class="footer-links">
@@ -191,6 +221,7 @@
         <li><a href="who-we-are.html">Who we are</a></li>
         <li><a href="what-we-build.html">What we build</a></li>
         <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="learn.html">Learn</a></li>
         <li><a href="partner-with-us.html">Partner with us</a></li>
         <li><a href="index.html#ask">Ask the club</a></li>
       </ul>

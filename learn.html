@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Learning Path — AeroBMSCE</title>
+  <meta name="description" content="From zero to competition-ready: six waypoints with club notes, practice quizzes and an AI tutor that cites its sources.">
+  <link rel="icon" href="images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <script src="ai-core.js" defer></script>
+  <script src="learn-data.js" defer></script>
+  <script src="learn.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="notice">Practice website for the AeroBMSCE web development recruitment task. This is not the official AeroBMSCE website.</div>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="AeroBMSCE home">
+        <img src="images/logo-light.png" alt="" width="64" height="29">
+        <span class="brand-name">Aero<span>BMSCE</span></span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="who-we-are.html">Who we are</a></li>
+          <li><a href="what-we-build.html">What we build</a></li>
+          <li><a href="achievements.html">Achievements</a></li>
+          <li><a href="learn.html" aria-current="page">Learn</a></li>
+          <li class="nav-cta"><a href="partner-with-us.html">Partner with us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero">
+      <div class="container">
+        <span class="label">Sheet 05 — Learning path</span>
+        <h1>From zero to competition-ready.</h1>
+        <p class="lead">Each waypoint has club notes, a practice quiz and an AI tutor that cites its sources. When something's tricky, flag it and a senior will review it.</p>
+        <p class="gc-meta" id="progress" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- ===== The route: six waypoints (built by learn.js) ===== -->
+    <section class="section route-section" aria-label="Waypoints">
+      <div class="container">
+        <ol class="route" id="route"></ol>
+        <noscript><p class="muted">The learning path needs JavaScript to load its notes and quizzes.</p></noscript>
+      </div>
+    </section>
+
+    <!-- ===== Current waypoint + tutor ===== -->
+    <section class="section">
+      <div class="container learn-layout">
+        <div id="waypoint" class="waypoint" tabindex="-1"></div>
+
+        <aside class="gc tutor" aria-label="AI tutor">
+          <div class="gc-head">
+            <span class="gc-title"><span class="gc-dot" aria-hidden="true"></span>AeroBMSCE · Flight instructor</span>
+            <a href="mailto:aerobmsce@bmsce.ac.in?subject=Learning%20path%3A%20please%20review">Ask a senior</a>
+          </div>
+          <div class="gc-log" role="log" aria-live="polite" aria-label="Tutor conversation">
+            <div class="gc-msg gc-msg-bot"><p>Hi! Ask me anything from the club notes, like lift, CG, LiPos or the Drone Rules. I'll show you where each answer comes from.</p></div>
+          </div>
+          <div class="gc-chips" aria-label="Suggested questions"></div>
+          <form class="gc-form" autocomplete="off">
+            <label class="visually-hidden" for="tutor-input">Ask the tutor</label>
+            <input class="gc-input" id="tutor-input" type="text" placeholder="Why do planes stall?" maxlength="200">
+            <button class="gc-send" type="submit" aria-label="Send question">→</button>
+          </form>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="title-block">
+        <div><small>PROJECT</small><strong>AeroBMSCE — BMS College of Engineering</strong></div>
+        <div><small>DRAWING</small><strong>Learning path</strong></div>
+        <div><small>SHEET</small><strong>05 / 06</strong></div>
+        <div><small>CONTACT</small><a href="mailto:aerobmsce@bmsce.ac.in">aerobmsce@bmsce.ac.in</a></div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="who-we-are.html">Who we are</a></li>
+        <li><a href="what-we-build.html">What we build</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="learn.html">Learn</a></li>
+        <li><a href="partner-with-us.html">Partner with us</a></li>
+        <li><a href="index.html#ask">Ask the club</a></li>
+      </ul>
+      <p class="footer-note">© <span id="year">2026</span> AeroBMSCE · Propel Lab–3, BMS College of Engineering. Practice site for the AeroBMSCE web development recruitment task — not the official AeroBMSCE website.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

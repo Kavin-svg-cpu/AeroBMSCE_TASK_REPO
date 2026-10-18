@@ -12,12 +12,31 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
+  <script src="ai-core.js" defer></script>
   <script src="ask-the-club.js" defer></script>
+  <script src="field.js" defer></script>
 </head>
 <body>
 
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="notice">Practice website for the AeroBMSCE web development recruitment task. This is not the official AeroBMSCE website.</div>
+
+  <!-- ===== Test-field conditions (filled in by field.js; stays hidden without JS) ===== -->
+  <section class="field-strip" id="field" aria-label="Test field conditions" hidden>
+    <div class="container field-row">
+      <span class="field-name">Test field · BMSCE, Bengaluru</span>
+      <span class="field-status" data-level="loading"><span class="field-dot" aria-hidden="true"></span><span data-field="status">Checking conditions…</span></span>
+      <span>Wind <b data-field="wind">–</b></span>
+      <span>Gusts <b data-field="gusts">–</b></span>
+      <span>Temp <b data-field="temp">–</b></span>
+      <span>Sunset <b data-field="sunset">–</b></span>
+      <span class="field-credit">Live data · <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a></span>
+    </div>
+    <div class="container field-summary">
+      <span class="field-ai">AI summary</span>
+      <span data-field="summary" aria-live="polite">Reading the windsock…</span>
+    </div>
+  </section>
 
   <!-- ===== Header (identical on every page; only aria-current changes) ===== -->
   <header class="site-header">
@@ -33,6 +52,7 @@
           <li><a href="who-we-are.html">Who we are</a></li>
           <li><a href="what-we-build.html">What we build</a></li>
           <li><a href="achievements.html">Achievements</a></li>
+          <li><a href="learn.html">Learn</a></li>
           <li class="nav-cta"><a href="partner-with-us.html">Partner with us</a></li>
         </ul>
       </nav>
@@ -83,7 +103,7 @@
           <h2>Explore the club</h2>
           <div class="dim-line"></div>
         </div>
-        <div class="grid-4">
+        <div class="grid-3">
           <a class="card" href="who-we-are.html">
             <span class="label">Sheet 02</span>
             <h3>Who we are</h3>
@@ -102,11 +122,23 @@
             <p class="muted">Every podium from 2018 to 2026, filterable by season and competition.</p>
             <span class="card-arrow">Open sheet →</span>
           </a>
-          <a class="card" href="partner-with-us.html">
+          <a class="card" href="learn.html">
             <span class="label">Sheet 05</span>
+            <h3>Learning path</h3>
+            <p class="muted">Six waypoints from basics of flight to competition, with quizzes and an AI tutor.</p>
+            <span class="card-arrow">Open sheet →</span>
+          </a>
+          <a class="card" href="partner-with-us.html">
+            <span class="label">Sheet 06</span>
             <h3>Partner with us</h3>
             <p class="muted">Collaboration tiers, partner outcomes and how to get in touch.</p>
             <span class="card-arrow">Open sheet →</span>
+          </a>
+          <a class="card" href="#ask">
+            <span class="label">Ground control</span>
+            <h3>Ask the club</h3>
+            <p class="muted">Who can join, how selection works, what you'll build. Answers come with sources.</p>
+            <span class="card-arrow">Ask a question →</span>
           </a>
         </div>
       </div>
@@ -195,7 +227,7 @@
       <div class="title-block">
         <div><small>PROJECT</small><strong>AeroBMSCE — BMS College of Engineering</strong></div>
         <div><small>DRAWING</small><strong>Home</strong></div>
-        <div><small>SHEET</small><strong>01 / 05</strong></div>
+        <div><small>SHEET</small><strong>01 / 06</strong></div>
         <div><small>CONTACT</small><a href="mailto:aerobmsce@bmsce.ac.in">aerobmsce@bmsce.ac.in</a></div>
       </div>
       <ul class="footer-links">
@@ -203,6 +235,7 @@
         <li><a href="who-we-are.html">Who we are</a></li>
         <li><a href="what-we-build.html">What we build</a></li>
         <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="learn.html">Learn</a></li>
         <li><a href="partner-with-us.html">Partner with us</a></li>
         <li><a href="index.html#ask">Ask the club</a></li>
       </ul>
