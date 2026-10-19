@@ -60,7 +60,7 @@ All six pages share one stylesheet (`style.css`) and one script (`script.js`). T
 **Concept: an engineering drawing set.** AeroBMSCE designs aircraft, so the site is styled like a set of blueprint sheets:
 
 - **Blueprint base.** The background is navy with a drafting grid of fine 20px squares and heavier 100px lines.
-- **Sheet numbering.** Every page is a "sheet" (Sheet 01 / 05 … 05 / 05), and its footer is styled as a drawing **title block** (project, drawing name, sheet number, contact).
+- **Sheet numbering.** Every page is a "sheet" (Sheet 01 / 06 … 06 / 06), and its footer is styled as a drawing **title block** (project, drawing name, sheet number, contact).
 - **Drawing details.** Section headings have a **dimension line** under them (a measuring line with an arrowhead). Cards have gold **registration corners**. Photos are captioned as figures ("FIG. 2 — …"). The hero shows the club's CAD aircraft with labelled call-outs.
 - **One flight-deck element.** On the Achievements page, a black-glass **altitude tape**, like an aircraft altimeter, sits beside the timeline. The tape lists the seasons, and a boxed amber readout follows the season you're reading. Clicking a year jumps to it. I kept this to one element on purpose. The cockpit look stands out more when it's the one exception to the blueprint style.
 
@@ -96,11 +96,13 @@ I re-ran the same click sequence afterwards. It now goes `2026 → 2024 → (non
 
 **A smaller one.** On a phone-sized screen (390px) the Partner page scrolled sideways by 9px. I measured each element's right edge in the test page and found two causes. A grid column set to `1fr` won't shrink below its widest content, which here was the long "Email the partnership team" button. Separately, `max-width: 360px` on the contact image was overriding the global `max-width: 100%`. Using `minmax(0, 1fr)` and `max-width: min(360px, 100%)` fixed both.
 
+**A third one: links that overshot their section.** The site navigator sends visitors to links like `partner-with-us.html#tiers`. In testing, the page sometimes landed hundreds of pixels past the section. I measured where the section ended up on 4 loads of each test link, and the result varied from load to load. There were two causes. The browser jumps to the anchor before the web fonts load, and when they arrive the text reflows and moves the section. On top of that, the CSS `scroll-behavior: smooth` animated that first jump, and the animation kept going after the page had reflowed. The fix: smooth scrolling is now switched on only after the page has loaded, and `script.js` re-aligns to the anchor once `document.fonts.ready` resolves. After the fix, 8 out of 8 loads landed exactly 80px from the top, just below the sticky header.
+
 ---
 
 ## Extra: AI features (from the "Homepage — Blueprint" mockup)
 
-Four features follow a mockup of AI-assisted pages. They share one small matching engine, `ai-core.js`.
+Five features follow a mockup of AI-assisted pages. They share one small matching engine, `ai-core.js`. The full specification, covering behaviour, data sources, thresholds, tests and maintenance, is in **[AI-SPEC.md](AI-SPEC.md)**.
 
 | Feature | Where | Files |
 |---|---|---|
@@ -108,6 +110,7 @@ Four features follow a mockup of AI-assisted pages. They share one small matchin
 | **Ask the club (Ground Control).** Answers joining questions with sources | Home page, `#ask` | `ask-the-club.js` |
 | **Learning path + AI tutor.** Six waypoints (Basics of flight → Competition) with notes, practice quizzes and a tutor that cites its sources | `learn.html` | `learn-data.js`, `learn.js` |
 | **Project archive search.** Every documented build and result, searchable in plain words | What we build, `#archive` | `archive.js` |
+| **Site navigator ("Where do you want to go? I can help").** Describe what you want and it takes you to the exact page and section, which flashes gold when you arrive | Home page, floating compass button | `navigator.js` |
 
 **Why there's no LLM.** GitHub Pages has no backend, and an API key in front-end code would be public. So the "AI" runs entirely in the browser:
 1. The question is normalised: lowercased, filler words removed, synonyms mapped ("freshers" → "fresher", "windy" → "wind", "LiPo" → "battery") and plurals stripped.
@@ -124,7 +127,7 @@ Four features follow a mockup of AI-assisted pages. They share one small matchin
 
 **Safety and UX details.** User text is always inserted with `textContent`, never as HTML. Chat logs are `aria-live` regions. Quiz progress is saved per browser in `localStorage`, wrapped in try/catch so a blocked storage doesn't break the page. Typing animations are skipped under `prefers-reduced-motion`. Without JavaScript, each feature shows a fallback message.
 
-**Testing.** An automated test page loads the real pages in iframes and runs 37 questions through the three matchers. Examples: the mockup's "Can first-years join?" goes to the recruitment notes, "Is it too windy to fly?" goes to WPT 05 › Reading the weather, and "Which year did we try a twin-boom design?" correctly returns *No record*.
+**Testing.** An automated test page loads the real pages in iframes. It runs 37 questions through the assistant, tutor and archive search, plus 17 through the navigator, and checks that all 33 navigator destinations exist. Examples: the mockup's "Can first-years join?" goes to the recruitment notes, "Is it too windy to fly?" goes to WPT 05 › Reading the weather, "Which year did we try a twin-boom design?" correctly returns *No record*, and "where can I see the sponsorship tiers?" goes to Partner with us › Collaboration tiers. See [AI-SPEC.md](AI-SPEC.md) §4 for the full table.
 
 ---
 

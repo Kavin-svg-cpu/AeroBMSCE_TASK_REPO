@@ -13,6 +13,23 @@
   });
 })();
 
+/* ---------- 1b. Land exactly on #section links ----------
+   The browser jumps to the anchor before web fonts finish loading; when
+   they arrive the text reflows and the section drifts. Re-align once the
+   page has fully loaded (used by the site navigator's "Take me there"). */
+window.addEventListener("load", function () {
+  var id = decodeURIComponent(location.hash.slice(1));
+  var target = id && document.getElementById(id);
+  var enableSmooth = function () { document.documentElement.classList.add("smooth-scroll"); };
+
+  if (!target || target.tagName !== "SECTION") { enableSmooth(); return; }
+  var align = function () {
+    target.scrollIntoView({ block: "start", behavior: "instant" });
+    enableSmooth();          // later in-page links scroll smoothly
+  };
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(align); else align();
+});
+
 /* ---------- 2. Footer year ---------- */
 (function setYear() {
   var el = document.getElementById("year");

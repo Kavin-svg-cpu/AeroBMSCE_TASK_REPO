@@ -15,6 +15,7 @@
   <script src="ai-core.js" defer></script>
   <script src="ask-the-club.js" defer></script>
   <script src="field.js" defer></script>
+  <script src="navigator.js" defer></script>
 </head>
 <body>
 
@@ -85,7 +86,7 @@
     </section>
 
     <!-- ===== Key numbers ===== -->
-    <section class="container" aria-label="AeroBMSCE in numbers">
+    <section id="numbers" class="container" aria-label="AeroBMSCE in numbers">
       <div class="stats">
         <div class="stat"><div class="stat-value">2012</div><div class="stat-label">Established</div></div>
         <div class="stat"><div class="stat-value">75+</div><div class="stat-label">Projects completed</div></div>
@@ -96,7 +97,7 @@
     </section>
 
     <!-- ===== The four sections of the site ===== -->
-    <section class="section">
+    <section id="explore" class="section">
       <div class="container">
         <div class="dim-heading">
           <span class="label">Drawing index</span>
@@ -145,7 +146,7 @@
     </section>
 
     <!-- ===== Latest result ===== -->
-    <section class="section band">
+    <section id="latest" class="section band">
       <div class="container split">
         <figure class="figure">
           <img src="images/photo1.jpg" alt="Team Flying Phantoms on stage holding the SAE Aerothon 2025 second prize cheque" width="768" height="432" loading="lazy">
@@ -161,7 +162,7 @@
     </section>
 
     <!-- ===== Vision ===== -->
-    <section class="section">
+    <section id="vision" class="section">
       <div class="container split">
         <div>
           <span class="label">Our vision</span>
@@ -220,6 +221,38 @@
     </section>
 
   </main>
+
+  <!-- ===== Site navigator: "Where do you want to go?" (navigator.js) ===== -->
+  <button class="nav-ai-launcher" type="button" aria-expanded="false" aria-controls="nav-ai-panel" hidden>
+    <svg class="nav-ai-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M15.5 8.5 L13.4 13.4 L8.5 15.5 L10.6 10.6 Z"/>
+    </svg>
+    <span class="nav-ai-text">Where do you want to go?<small>I can help</small></span>
+  </button>
+
+  <div class="nav-ai-panel" id="nav-ai-panel" role="dialog" aria-labelledby="nav-ai-title" hidden>
+    <div class="gc-head">
+      <span class="gc-title" id="nav-ai-title"><span class="gc-dot" aria-hidden="true"></span>Site navigator</span>
+      <button class="nav-ai-close" type="button" aria-label="Close navigator">×</button>
+    </div>
+    <div class="nav-ai-body">
+      <p class="nav-ai-msg">Tell me what you're looking for and I'll take you to the exact spot on the site.</p>
+      <form class="nav-ai-form" autocomplete="off">
+        <label class="visually-hidden" for="nav-ai-input">What are you looking for?</label>
+        <input class="nav-ai-input gc-input" id="nav-ai-input" type="text" placeholder="e.g. sponsorship tiers, LiPo safety, team photos" maxlength="200">
+        <button class="gc-send" type="submit" aria-label="Find it">→</button>
+      </form>
+      <div class="nav-ai-chips gc-chips" aria-label="Popular destinations">
+        <button type="button" class="gc-chip">How to join</button>
+        <button type="button" class="gc-chip">Sponsorship tiers</button>
+        <button type="button" class="gc-chip">Team photos</button>
+        <button type="button" class="gc-chip">Drone rules</button>
+        <button type="button" class="gc-chip">2024 results</button>
+      </div>
+      <div class="nav-ai-results" aria-live="polite"></div>
+    </div>
+  </div>
 
   <!-- ===== Footer: drawing title block ===== -->
   <footer class="site-footer">
