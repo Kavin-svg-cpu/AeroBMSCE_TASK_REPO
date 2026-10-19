@@ -104,7 +104,7 @@ All six pages share one stylesheet (`style.css`) and one script (`script.js`). T
 1. After every filter change, years on the tape with no visible milestones are dimmed (`.is-empty`) and can't be clicked.
 2. If the highlighted year has just been emptied, or nothing is highlighted because an earlier filter returned zero results, the readout moves to the first season that is still visible.
 3. If nothing matches at all, a "No milestones match these filters" message appears instead of a blank area.
-4. The unpublished information was provided with my written,references about Aero Bms in the web and some information extracted from this website itself.
+4. The unpublished information was provided with my written notes ,references about Aero Bms in the web and some information extracted from this website itself.
 
 I re-ran the same click sequence afterwards. It now goes `2026 → 2024 → (none) → 2024`, which is what you'd expect.
 
