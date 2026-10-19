@@ -1,8 +1,8 @@
 /* =========================================================
    AeroBMSCE — "Blueprint" design system
-   Every page is treated as a sheet in one engineering drawing
-   set: grid paper background, dimension-line headings, and a
-   title block in the footer. Gold comes from the club logo.
+   The site borrows from engineering drawings: grid paper
+   background, dimension-line headings, and a title block in
+   the footer. Gold comes from the club logo.
    ========================================================= */
 
 /* ---------- 1. Design tokens ---------- */
@@ -676,7 +676,7 @@ section[id]:target { animation: nav-arrive 2.4s ease-out; }
 .site-footer { border-top: 1px solid var(--line); background: var(--paper-deep); }
 .title-block {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
   border: 1px solid var(--line);
   margin: var(--s5) 0 var(--s4);
   font-family: var(--font-mono); font-size: 0.78rem;

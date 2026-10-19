@@ -21,7 +21,12 @@ All six pages share one stylesheet (`style.css`) and one script (`script.js`). T
 ---
 
 ## 1. Flaws in the original website
-
+**Observable Flaws**
+- The navigation panels observability was partial and not organised to different paages.Certain navigation panels were hidden on investigation of one of the panels.
+- No labels or organisation of images found in the  website.
+- Font of the letters in the page was small.
+- Black background with grey letters provided poor visibility.
+- The content in the website required better organisation.
 **Broken links and navigation**
 - The Contact link pointed to `contact.html`, which doesn't exist (404).
 - The navigation was different on every page. The home page had five links, the other pages had three, and the order kept changing (Home, Journey, Partners on one page; Journey, Home, Partners on another).
@@ -59,8 +64,14 @@ All six pages share one stylesheet (`style.css`) and one script (`script.js`). T
 
 **Concept: an engineering drawing set.** AeroBMSCE designs aircraft, so the site is styled like a set of blueprint sheets:
 
-- **Blueprint base.** The background is navy with a drafting grid of fine 20px squares and heavier 100px lines.
-- **Sheet numbering.** Every page is a "sheet" (Sheet 01 / 06 … 06 / 06), and its footer is styled as a drawing **title block** (project, drawing name, sheet number, contact).
+ **Blueprint base.** The background is navy with a drafting grid of fine 20px squares and heavier 100px lines
+- The reason for choosing for Blueprint visual is as follows:
+- Aviation already has its own blueprint language: aeronautical charts, aircraft three-view drawings, runway diagrams. We can borrow those instead of generic engineering drawings, which makes the site feel authentically aviation without the clichés.
+
+- It tells the club’s real story. An aero club is about learning, training and understanding how flight works, and Blueprint is visually about knowledge and craft.
+
+- It flatters your fleet. Line drawings of your actual aircraft (a Cessna 172, a glider, a microlight) with dimension callouts look striking and are far more distinctive than stock photos of planes in the sunset.
+
 - **Drawing details.** Section headings have a **dimension line** under them (a measuring line with an arrowhead). Cards have gold **registration corners**. Photos are captioned as figures ("FIG. 2 — …"). The hero shows the club's CAD aircraft with labelled call-outs.
 - **One flight-deck element.** On the Achievements page, a black-glass **altitude tape**, like an aircraft altimeter, sits beside the timeline. The tape lists the seasons, and a boxed amber readout follows the season you're reading. Clicking a year jumps to it. I kept this to one element on purpose. The cockpit look stands out more when it's the one exception to the blueprint style.
 
@@ -79,11 +90,15 @@ All six pages share one stylesheet (`style.css`) and one script (`script.js`). T
 - **Accessibility.** Visible dashed gold focus outlines, a skip link, `alt` text on every image, `prefers-reduced-motion` support, and real `<button>`s with `aria-pressed` for the filters.
 - **Content fixes.** "16+ years" was replaced with "Est. 2012" and "Flying since 2012". The typos are fixed. "lll South India Exhibition" is read as the Roman numeral **III**.
 - **Responsive.** Built for desktop, as required, but the layout also works on tablets and phones. The grids collapse to fewer columns and the nav becomes a Menu button. The altitude tape hides on narrow screens because the filters do the same job there.
+- It also included 2-3 interactive AI club assistant feature and also interactive AI powered learning path to help beginners understand aeronautics before joining the club paving the path for interested candidates
 - **Performance.** Photos were resized and re-compressed (about 4.2 MB down to about 1.4 MB), and images below the fold use `loading="lazy"`.
+- An AI navigation tool is also used to enhance user experience and eliminate difficulty in finding solutions in the website.
 
 ## 3. A problem I ran into: the altitude tape pointing at an empty season
 
-**The problem.** The altitude tape and the filters were built separately. The tape highlights whichever season is in view, and the filters hide milestones that don't match. While testing combinations I found that if I picked **Season: 2018** and then **Type: Drone racing**, every season was hidden. The tape's readout was still on a year that no longer had anything under it, and it stayed stuck when I switched back to **Season: All**. The two parts of the page were out of sync.
+**The problems.** 
+- The altitude tape and the filters were built separately. The tape highlights whichever season is in view, and the filters hide milestones that don't match. While testing combinations I found that if I picked **Season: 2018** and then **Type: Drone racing**, every season was hidden. The tape's readout was still on a year that no longer had anything under it, and it stayed stuck when I switched back to **Season: All**. The two parts of the page were out of sync.
+- To inlcude the AI club assistant , problem was faced to fetch information which was not published in the website itself.Hence the club assistant will have to return not published for some set of questions.
 
 **How I found it.** I wrote a small test page that loads `achievements.html` in an iframe, clicks the filter chips in different orders, and prints the result count, the visible seasons and the highlighted tape year after each step. The output showed `active: undefined` after a zero-result filter, and it stayed that way after the filters were loosened again.
 
@@ -91,7 +106,48 @@ All six pages share one stylesheet (`style.css`) and one script (`script.js`). T
 1. After every filter change, years on the tape with no visible milestones are dimmed (`.is-empty`) and can't be clicked.
 2. If the highlighted year has just been emptied, or nothing is highlighted because an earlier filter returned zero results, the readout moves to the first season that is still visible.
 3. If nothing matches at all, a "No milestones match these filters" message appears instead of a blank area.
+4. I've built the rest of the mockup and updated the club assistant with your notes. Everything is live at https://kavin-svg-cpu.github.io/AeroBMSCE_TASK_REPO/. I ran 37 test questions through the assistant, tutor and archive search and all now get the right answer, and no page scrolls sideways at phone width.
 
+**Your notes in Ground Control:** these answers now show as "On record" and cite "AeroBMSCE recruitment notes (core team)".
+
+| Question | Answer |
+|---|---|
+| **Who can join?** | Any BMSCE student from 1st to 3rd year, from any department. You take a written test in one domain. |
+| **Do I need to be in Mechanical?** | No. Recruitment is by domain (Flight Mechanics, Flight Structures / Subsystems, Electrical, CS), not by branch. |
+| **How does selection work?** | Written test in a domain, then a shortlist per domain, then an interview in an assigned time slot. Those on the final shortlist join the club. |
+| **Can first-years join?** | Yes, definitely. The test paper is the same for all students from 1st to 3rd year. |
+
+I also added "How should I prepare for the test?", which points to the learning path. The recruitment month and the club's Instagram handle are still marked "Not published".
+
+**The rest of the mockup:**
+- **Learning path ([learn.html](https://kavin-svg-cpu.github.io/AeroBMSCE_TASK_REPO/learn.html)), a new "Learn" page in the nav:**
+  - Six waypoints, from Basics of flight to Competition.
+  - Each waypoint has five short notes, each linked to its sources (NASA Glenn, FAA, Flite Test, eCalc, ArduPilot, a university LiPo guide, India's Drone Rules 2021, SAE pages and BMSCE's Propel Lab-3 report).
+  - Each waypoint has a 3–4 question quiz. Progress is saved in the visitor's browser.
+  - The tutor answers from the notes, cites them, and links to the matching note. "Flag for a senior" sends an email to aerobmsce@bmsce.ac.in.
+- **Project archive (What we build page):**
+  - 18 entries built only from documented results and the Propel Lab-3 report, searchable in plain words.
+  - The mockup's "Which year did we try a twin-boom design?" returns "No record", because there's no record of one.
+  - "Lesson" shows *Not recorded yet* unless a lesson was actually written down.
+- **Test-field strip (top of the home page):**
+  - Live wind, gusts, temperature and sunset for BMSCE from Open-Meteo, a free weather service that needs no key.
+  - A one-line summary of flying conditions that always ends by saying to check the drone airspace map and get a senior's go-ahead. Right now it correctly says "Field closed: after sunset".
+
+None of these call a real AI model. Like Ground Control, they match questions against written-up knowledge and admit when they don't know.
+
+**Things to check:**
+1. **Wind limits are my rule of thumb, not a club rule:** up to 15 km/h wind and 20 km/h gusts counts as "good" for a beginner trainer. If the club has its own limits, send them and I'll swap them in.
+2. **Results I couldn't confirm independently:** web searches found no outside record of AeroBMSCE's SAE Aero Design West 2026 or AeroTHON 2025 placings. Those entries rely on the task site's own claims.
+3. **Drone rules wording is deliberately cautious:** the green zone (up to 400 ft / 120 m) and the licence exemptions are confirmed. Registration details vary by drone category and the rules get amended, so the notes tell students to check the current version.
+4. **Your recruitment notes are now public:** they're quoted on the live site and in the README. Make sure the core team is happy for that to be published.
+
+Sources:
+- [MoCA — Drone Rules 2021 summary (Vikaspedia)](https://en.vikaspedia.in/viewcontent/e-governance/digital-india/unmanned-aircraft-system/ministry-of-civil-aviation-notifies-liberalised-drone-rules-2021?lgn=en) · [Draft Drone Rules 2021 (Digital Sky)](https://digitalsky.dgca.gov.in/assets/files/Draft-DronesRules-2021_Gazette%20version_14-Jul-2021.pdf) · [The Quint — Drone Rules 2021](https://www.thequint.com/amp/story/tech-and-auto/indias-drone-rules-2021-here-is-what-the-new-rules-say-about-drone-policy)
+- [SAEINDIA AeroTHON 2025](https://saeindia.org/aerothon2025/) · [MathWorks competition winners](https://kr.mathworks.com/academia/students/competitions/global-competitions/winners.html) · [MIT-WPU at AeroTHON 2025](https://mitwpu.edu.in/achievements/mit-wpu-team-avion-soaring-high-at-sae-aerothon-2025)
+- [DJS Skylark at SAE Aero Design West 2026](https://mba.hitbullseye.com/blog/djs-skylark-from-mumbais-djsce-soars-to-global-success-with-three-podiums-at-sae-aero-design-west-2026-in-texas.php) · [Brno University of Technology — SAE West 2026](https://www.fme.vutbr.cz/en/fakulta/oceneni/76842)
+- [Flite Test — RC airplane CG](https://flitetest.com/articles/where-should-an-rc-airplane-center-of-gravity-be) · [Flite Test — Easy Aircraft Design](https://www.flitetest.com/articles/easy-aircraft-design) · [eCalc cgCalc](https://ecalc.ch/cgcalc.php) · [Model Airplane News CG calculator](https://next.modelairplanenews.com/tools/cg-calculator)
+- [BYU MAGICC — LiPo guide](https://magicc.byu.edu/wiki/hw_guides/lipo_batts) · [Zbotic LiPo guide](https://zbotic.in/lipo-battery-guide-voltage-c-rating-safety/) · [Open Exam Prep — LiPo management](https://open-exam-prep.com/study-guides/aus-repl/rpas-systems-platforms/lipo-battery) · [SkyRC — 4.2 V standard](https://blog.skyrc.com/understanding-the-4-2v-standard-in-lipo-batteries/)
+- [BMSCE — Mechanical Student Affinity Groups](https://bmsce.ac.in/home/Mechanical-Engineering-Student-Affinity-Groups) · [BMSCE — Propel Lab-3 report](https://bmsce.ac.in/assets/files/Research/Propel%20Lab%20III%20-%20Report.pdf)
 I re-ran the same click sequence afterwards. It now goes `2026 → 2024 → (none) → 2024`, which is what you'd expect.
 
 **A smaller one.** On a phone-sized screen (390px) the Partner page scrolled sideways by 9px. I measured each element's right edge in the test page and found two causes. A grid column set to `1fr` won't shrink below its widest content, which here was the long "Email the partnership team" button. Separately, `max-width: 360px` on the contact image was overriding the global `max-width: 100%`. Using `minmax(0, 1fr)` and `max-width: min(360px, 100%)` fixed both.
